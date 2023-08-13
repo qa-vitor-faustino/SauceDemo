@@ -17,7 +17,7 @@ public class ProductsPageTest extends Browsers {
 
 	@Before
 	public void setUp() throws Exception {
-		openBrowser("Chrome", "Fullscreen");
+		openBrowser("Chrome", "Minimized");
 		openSite(url.HomePage);
 		page.login();
 	}
@@ -29,12 +29,12 @@ public class ProductsPageTest extends Browsers {
 
 	@Test
 	public void test01_maximumNumberOfSelectedProducts() {
-		page.selectProducts(1, 6);
+		page.validateSelectProducts(1, 6);
 	}
 
 	@Test
 	public void test02_minimumNumberOfSelectedProducts() {
-		page.selectProducts(1, 1);
+		page.validateSelectProducts(1, 1);
 	}
 
 	@Test
@@ -42,4 +42,23 @@ public class ProductsPageTest extends Browsers {
 		page.validateMenuLinks(1, 3);
 	}
 
+	@Test
+	public void test04_validateSortNameZtoA() {
+		page.selectSorting(1);
+	}
+
+	@Test
+	public void test05_validateSortNameAtoZ() {
+		page.selectSorting(2);
+	}
+
+	@Test
+	public void test06_validateSortPriceTowToHigh() {
+		page.selectSorting(3);
+	}
+
+	@Test
+	public void test07_validateSortPriceHighToLow() {
+		page.selectSorting(4);
+	}
 }

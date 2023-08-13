@@ -26,6 +26,10 @@ public class TestMethods extends DriversFactory {
 		webElement.sendKeys(text);
 	}
 
+	public void getText(By element) {
+		driver.findElement(element).getText();
+	}
+
 	public void validateText(By element, String textExpected) {
 		WebElement webElement = waitForElementAndPerformAction(element);
 		assertEquals(textExpected, webElement.getText());
