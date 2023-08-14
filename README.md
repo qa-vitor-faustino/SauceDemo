@@ -1,6 +1,6 @@
-# Automação de Testes Web com JUnit, Selenium e Page Objects
+# Automação de Testes Web do site SauceDemo com java, Selenium, Selenium WebDriver, Junit e Page Objects
 
-Este é um projeto pessoal criado com o objetivo de estudar a automação de testes web utilizando o framework JUnit, Selenium e o padrão de design Page Objects. O projeto visa aprimorar minhas habilidades em automação de testes, além de explorar a integração entre o Maven 3.9.4, Java 17 e o Selenium.
+Este é um projeto pessoal criado com o objetivo de estudar a automação de testes web utilizando o framework Selenium, Selenium WebDriver e o padrão de design Page Objects. O projeto visa aprimorar minhas habilidades em automação de testes, além de explorar a integração entre o Maven 3.9.4, Java 17 e o Selenium.
 
 ### Tecnologias Utilizadas
 
