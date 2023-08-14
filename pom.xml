@@ -3,6 +3,21 @@
 	<groupId>com.saucedemo.www</groupId>
 	<artifactId>SauceDemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	   
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Use an appropriate version -->
+                <configuration>
+                    <source>17</source> <!-- Java version you want to use for compilation -->
+                    <target>17</target> <!-- Target Java version for compiled classes -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+	
 	<dependencies>
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>

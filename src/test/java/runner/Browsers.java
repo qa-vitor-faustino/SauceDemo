@@ -38,11 +38,11 @@ public class Browsers extends DriversFactory {
 			System.out.println("No browser is open.");
 		}
 	}
-	
+
 	public void browserBack() {
 		driver.navigate().back();
 	}
-	
+
 	public void browserForward() {
 		driver.navigate().forward();
 	}

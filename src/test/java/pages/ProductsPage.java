@@ -63,20 +63,20 @@ public class ProductsPage extends Browsers {
 		select.selectByVisibleText(selectOptions[option - 1]);
 
 		switch (option) {
-		case 1:
-			validateSortingOption("Sauce Labs Backpack");
-			break;
-		case 2:
-			validateSortingOption("Test.allTheThings() T-Shirt (Red)");
-			break;
-		case 3:
-			validateSortingOption("Sauce Labs Onesie");
-			break;
-		case 4:
-			validateSortingOption("Sauce Labs Fleece Jacket");
-			break;
-		default:
-			break;
+			case 1:
+				validateSortingOption("Sauce Labs Backpack");
+				break;
+			case 2:
+				validateSortingOption("Test.allTheThings() T-Shirt (Red)");
+				break;
+			case 3:
+				validateSortingOption("Sauce Labs Onesie");
+				break;
+			case 4:
+				validateSortingOption("Sauce Labs Fleece Jacket");
+				break;
+			default:
+				break;
 		}
 	}
 
