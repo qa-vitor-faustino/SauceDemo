@@ -11,10 +11,19 @@ import utils.DriversFactory;
 
 public class Browsers extends DriversFactory {
 
+	/**
+	 * Abre o navegador especificado no modo de visualização especificado.
+	 *
+	 * @param browser  O navegador a ser aberto (Google Chrome ou Microsoft Edge).
+	 * @param viewMode O modo de visualização (fullscreen ou minimized).
+	 */
 	public static void openBrowser(String browser, String viewMode) {
 		driver = initializeDriver(browser, viewMode);
 	}
 
+	/**
+	 * Fecha o navegador.
+	 */
 	public static void closeBrowser() {
 		if (driver != null) {
 			driver.quit();
@@ -23,6 +32,9 @@ public class Browsers extends DriversFactory {
 		}
 	}
 
+	/**
+	 * Fecha a aba atual do navegador.
+	 */
 	public static void closeTab() {
 		if (driver != null) {
 			driver.close();
@@ -31,6 +43,11 @@ public class Browsers extends DriversFactory {
 		}
 	}
 
+	/**
+	 * Abre um site específico no navegador.
+	 *
+	 * @param url A URL do site a ser aberto.
+	 */
 	public static void openSite(String url) {
 		if (driver != null) {
 			driver.get(url);
@@ -39,14 +56,8 @@ public class Browsers extends DriversFactory {
 		}
 	}
 
-	public void browserBack() {
-		driver.navigate().back();
-	}
-
-	public void browserForward() {
-		driver.navigate().forward();
-	}
-
+	// Método privado para inicializar o driver conforme o navegador e modo de
+	// visualização especificados.
 	private static WebDriver initializeDriver(String browser, String viewMode) {
 		WebDriverManager manager = null;
 		if (browser.equalsIgnoreCase("Google Chrome") || browser.equalsIgnoreCase("chrome")) {
@@ -63,6 +74,8 @@ public class Browsers extends DriversFactory {
 		return driver;
 	}
 
+	// Método privado para criar o driver de acordo com o navegador e modo de
+	// visualização.
 	private static WebDriver createDriver(String browser, String viewMode) {
 		WebDriver driver = null;
 		if (browser.equalsIgnoreCase("Google Chrome") || browser.equalsIgnoreCase("chrome")) {
@@ -73,6 +86,8 @@ public class Browsers extends DriversFactory {
 		return driver;
 	}
 
+	// Método privado para criar o driver do Chrome com as opções de visualização
+	// apropriadas.
 	private static WebDriver createChromeDriver(String viewMode) {
 		ChromeOptions options = new ChromeOptions();
 		if (viewMode.equalsIgnoreCase("fullscreen")) {
@@ -87,6 +102,8 @@ public class Browsers extends DriversFactory {
 		}
 	}
 
+	// Método privado para criar o driver do Microsoft Edge com as opções de
+	// visualização apropriadas.
 	private static WebDriver createEdgeDriver(String viewMode) {
 		EdgeOptions options = new EdgeOptions();
 		if (viewMode.equalsIgnoreCase("fullscreen")) {

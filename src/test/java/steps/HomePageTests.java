@@ -1,4 +1,4 @@
-package tests;
+package steps;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,20 +8,18 @@ import org.junit.runners.MethodSorters;
 
 import pages.HomePage;
 import runner.Browsers;
+import utils.TestMass;
 import utils.WebUrls;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HomePageTests extends Browsers {
 	WebUrls url = new WebUrls();
+	TestMass testMass = new TestMass();
 	HomePage page = new HomePage();
-
-	private String usernameValid = "standard_user";
-	private String userBloq = "locked_out_user";
-	private String passswordValid = "secret_sauce";
 
 	@Before
 	public void setUp() throws Exception {
-		openBrowser("Chrome", "Fullscreen");
+		openBrowser("Chrome", "minimized");
 		openSite(url.HomePage);
 	}
 
@@ -32,22 +30,23 @@ public class HomePageTests extends Browsers {
 
 	@Test
 	public void test01_LoginValid() {
-		page.login(usernameValid, passswordValid, url.ProductsPage);
+		page.login(testMass.usernameValid, testMass.passswordValid, url.ProductsPage);
 	}
 
 	@Test
 	public void test02_LoginUserBloq() {
-		page.loginErro(userBloq, passswordValid, url.HomePage, "Epic sadface: Sorry, this user has been locked out.");
+		page.loginErro(testMass.userBloq, testMass.passswordValid, url.HomePage,
+				"Epic sadface: Sorry, this user has been locked out.");
 	}
 
 	@Test
 	public void test03_UsernameBlank() {
-		page.loginErro("", passswordValid, url.HomePage, "Epic sadface: Username is required");
+		page.loginErro("", testMass.passswordValid, url.HomePage, "Epic sadface: Username is required");
 	}
 
 	@Test
 	public void test04_PasswordBlank() {
-		page.loginErro(usernameValid, "", url.HomePage, "Epic sadface: Password is required");
+		page.loginErro(testMass.usernameValid, "", url.HomePage, "Epic sadface: Password is required");
 	}
 
 	@Test

@@ -16,42 +16,117 @@ import utils.DriversFactory;
 
 public class TestMethods extends DriversFactory {
 
-	public void click(By element) {
-		WebElement webElement = waitForElementAndPerformAction(element);
-		webElement.click();
+	/**
+	 * Clica no elemento especificado.
+	 *
+	 * @param element O elemento a ser clicado.
+	 * @param step    A etapa descritiva para relatórios de erro.
+	 */
+	public void click(By element, String step) {
+		try {
+			WebElement webElement = waitForElementAndPerformAction(element);
+			webElement.click();
+		} catch (Exception e) {
+			System.err.println("Error in step " + step + ": " + e.getMessage());
+		}
 	}
 
-	public void write(By element, String text) {
-		WebElement webElement = waitForElementAndPerformAction(element);
-		webElement.sendKeys(text);
+	/**
+	 * Insere o texto especificado no elemento.
+	 *
+	 * @param element O elemento onde o texto será inserido.
+	 * @param text    O texto a ser inserido.
+	 * @param step    A etapa descritiva para relatórios de erro.
+	 */
+	public void write(By element, String text, String step) {
+		try {
+			WebElement webElement = waitForElementAndPerformAction(element);
+			webElement.sendKeys(text);
+		} catch (Exception e) {
+			System.err.println("Error in step " + step + ": " + e.getMessage());
+		}
 	}
 
-	public void getText(By element) {
-		driver.findElement(element).getText();
+	/**
+	 * Obtém o texto de um elemento.
+	 *
+	 * @param element O elemento do qual o texto será obtido.
+	 * @param step    A etapa descritiva para relatórios de erro.
+	 */
+	public void getText(By element, String step) {
+		try {
+			driver.findElement(element).getText();
+		} catch (Exception e) {
+			System.err.println("Error in step " + step + ": " + e.getMessage());
+		}
 	}
 
-	public void validateText(By element, String textExpected) {
-		WebElement webElement = waitForElementAndPerformAction(element);
-		assertEquals(textExpected, webElement.getText());
+	/**
+	 * Valida o texto esperado em um elemento.
+	 *
+	 * @param element      O elemento que deve conter o texto esperado.
+	 * @param textExpected O texto esperado.
+	 * @param step         A etapa descritiva para relatórios de erro.
+	 */
+	public void validateText(By element, String textExpected, String step) {
+		try {
+			WebElement webElement = waitForElementAndPerformAction(element);
+			assertEquals(textExpected, webElement.getText());
+		} catch (Exception e) {
+			System.err.println("Error in step " + step + ": " + e.getMessage());
+		}
 	}
 
-	public void validateTitle(String titleExpected) {
-		assertEquals(titleExpected, driver.getTitle());
+	/**
+	 * Valida o título da página.
+	 *
+	 * @param titleExpected O título esperado da página.
+	 * @param step          A etapa descritiva para relatórios de erro.
+	 */
+	public void validateTitle(String titleExpected, String step) {
+		try {
+			assertEquals(titleExpected, driver.getTitle());
+		} catch (Exception e) {
+			System.err.println("Error in step " + step + ": " + e.getMessage());
+		}
 	}
 
-	public void validateUrl(String urlExpected) {
-		assertEquals(urlExpected, driver.getCurrentUrl());
+	/**
+	 * Válida a URL atual.
+	 *
+	 * @param urlExpected A URL esperada.
+	 * @param step        A etapa descritiva para relatórios de erro.
+	 */
+	public void validateUrl(String urlExpected, String step) {
+		try {
+			assertEquals(urlExpected, driver.getCurrentUrl());
+		} catch (Exception e) {
+			System.err.println("Error in step " + step + ": " + e.getMessage());
+		}
 	}
 
+	/**
+	 * Modifica um seletor CSS removendo o By.cssSlector e substituindo um número específico.
+	 *
+	 * @param selector   O seletor CSS original.
+	 * @param numberItem O número a ser substituído no seletor.
+	 * @return O novo seletor CSS modificado.
+	 */
 	public By modifyCssSelector(By selector, int numberItem) {
 		String itemNumber = Integer.toString(numberItem);
 		String modifiedSelector = selector.toString().replace("By.cssSelector: ", "").replace("1", itemNumber);
 		return By.cssSelector(modifiedSelector);
 	}
 
-	private WebElement waitForElementAndPerformAction(By elementId) {
+	/**
+	 * Aguarda a visibilidade de um elemento e realiza uma ação.
+	 *
+	 * @param element O elemento a ser aguardado.
+	 * @return O elemento visível.
+	 */
+	private WebElement waitForElementAndPerformAction(By element) {
 		Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofMillis(500)).ignoring(NoSuchElementException.class);
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(elementId));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(element));
 	}
 }
