@@ -31,6 +31,7 @@ public class ProductsPageTest extends Browsers {
 		closeBrowser();
 	}
 
+	// Válida a seleção de produtos adicionando-os ao carrinho
 	@Test
 	public void test01_MaximumNumberOfSelectedProducts() {
 		page.validateSelectProducts(1, 6);
@@ -41,11 +42,13 @@ public class ProductsPageTest extends Browsers {
 		page.validateSelectProducts(1, 1);
 	}
 
+	// Válida o menu hamburguer da página e seus links.
 	@Test
 	public void test03_ValidateMenuLinks() {
 		page.validateMenuLinks(1, 3);
 	}
 
+	// Válida a opção de ordenação e válida a ordem dos produtos.
 	@Test
 	public void test04_ValidateSortNameZtoA() {
 		page.selectSorting(1);
@@ -64,5 +67,11 @@ public class ProductsPageTest extends Browsers {
 	@Test
 	public void test07_ValidateSortPriceHighToLow() {
 		page.selectSorting(4);
+	}
+	
+	// Válida se o link de cada produto está redirecionado certo
+	@Test
+	public void test08_ValidateAllProductsLinks() {
+		page.validateProductsLink(1,6);
 	}
 }

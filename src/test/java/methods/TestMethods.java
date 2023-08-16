@@ -30,6 +30,17 @@ public class TestMethods extends DriversFactory {
 			System.err.println("Error in step " + step + ": " + e.getMessage());
 		}
 	}
+	
+	public void clickByText(String attribute, String text, String step) {
+		try {
+			By locator = By.xpath("//" + attribute + "[text()='" + text + "']");
+			WebElement webElement = waitForElementAndPerformAction(locator);
+			webElement.click();
+		} catch (Exception e) {
+			System.err.println("Error in step " + step + ": " + e.getMessage());
+		}
+	}
+	
 
 	/**
 	 * Insere o texto especificado no elemento.
